@@ -50,4 +50,5 @@ export const ToggleButton = styled.button`
 export const ChildContent = styled.div`
   flex: 1;
   padding: 1%;
+  overflow: auto;
 `;

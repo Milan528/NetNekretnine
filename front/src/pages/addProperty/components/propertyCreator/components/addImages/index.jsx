@@ -2,10 +2,9 @@ import { useState } from "react";
 import ImageSlider from "../../../../../../components/imageSlider";
 import { Container, ControlsContainer, ImageSliderContainer } from "./styles";
 
-const AddImages = () => {
+const AddImages = ({ images, setImages }) => {
   // const inpitRef = createRef();
   // onClick={() => inpitRef.current.onClick()} //ako nekad ono htmlFor ne radi vise
-  const [images, setImages] = useState([]);
 
   const changeHandler = (event) => {
     let files = Array.from(event.target.files).map((file) => {
