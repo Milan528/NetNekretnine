@@ -35,3 +35,16 @@ button {
 *::before {
   box-sizing: inherit;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: hsl(240, 7%, 82%);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: hsl(228, 2%, 50%);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(228, 4%, 26%);
+}

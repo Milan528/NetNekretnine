@@ -15,7 +15,7 @@ export const Section = styled.section`
   background-size: cover;
   background-position: center;
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 400px) {
     padding: 2px 2px;
   }
 `;
@@ -65,7 +65,7 @@ export const SubscribeContent = styled.div`
     margin-bottom: 2rem;
   }
   @media screen and (max-width: 768px) {
-    flex: initial;
+    flex: 1;
     max-width: 100%;
   }
 `;
@@ -87,7 +87,7 @@ export const SubscribeButton = styled.button`
       props.hover ? props.hover : "var(--first-color-alt)"};
   }
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 352px) {
     margin-right: 0.5rem;
     font-size: var(--small-font-size);
     padding: 12px 24px;

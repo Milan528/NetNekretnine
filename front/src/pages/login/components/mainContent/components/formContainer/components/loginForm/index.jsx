@@ -31,6 +31,7 @@ const LoginForm = () => {
       dispatch(login(email, password));
     }
   };
+
   useEffect(() => {
     if (token !== null) {
       if (location.state ? (location.state.from ? true : false) : false) {

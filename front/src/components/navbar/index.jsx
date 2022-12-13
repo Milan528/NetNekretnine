@@ -1,6 +1,7 @@
 import React from "react";
 import "boxicons";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   Header,
   NavbarContainer,
@@ -9,6 +10,8 @@ import {
   NavIcons,
   NavList,
   NavMenu,
+  CloseMenu,
+  MenuIconHolder,
 } from "./styles";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,33 +19,30 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as routes from "../../app/router/routes.js";
 import { setToken } from "../../app/redux/slices";
+import CloseIcon from "@mui/icons-material/Close";
 
 const NavBar = () => {
   const [isScrollHeader, setIsScrollHeader] = useState(false);
-
+  const [menuIsDisplayed, setMenuIsDisplayed] = useState(true);
   const token = useSelector((state) => state.app.token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const currentLocation = location.pathname.split("/")[1];
 
-  const usePathName = () => {
-    const location = useLocation();
-    return location.pathname.split("/")[1];
+  const scrollHeader = () => {
+    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+    if (window !== undefined) {
+      if (window.scrollY >= 50) {
+        addScrollHeader();
+      } else {
+        removeScrollHeader();
+      }
+    }
   };
-  const currentLocation = usePathName();
 
   useEffect(() => {
-    const scrollHeader = () => {
-      // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-      if (window !== undefined) {
-        if (window.scrollY >= 50) {
-          addScrollHeader();
-        } else {
-          removeScrollHeader();
-        }
-      }
-    };
     window.addEventListener("scroll", scrollHeader);
-
     return () => window.removeEventListener("scroll", scrollHeader);
   });
 
@@ -73,6 +73,10 @@ const NavBar = () => {
     navigate(routes.addPropertyRoute);
   };
 
+  const handleToggleNavMenu = () => {
+    setMenuIsDisplayed((prev) => !prev);
+  };
+
   return (
     <>
       <Header scrollHeader={isScrollHeader}>
@@ -81,47 +85,59 @@ const NavBar = () => {
             <box-icon type="solid" name="home-alt-2"></box-icon>
             <span>NetNekretnine</span>{" "}
           </NavbarLogo>
-          <NavMenu>
-            <NavList linkID={currentLocation} scrollHeader={isScrollHeader}>
-              <li>
-                <Link id="home" to={routes.homeRoute}>
-                  <box-icon type="solid" name="home-alt-2"></box-icon>
-                  <span>Home</span>
-                </Link>
-              </li>
-              <li>
-                <a href="#popular">
-                  <box-icon name="building-house" type="solid"></box-icon>
-                  <span>Residences</span>
-                </a>
-              </li>
-              <li>
-                <Link id="contact" to={routes.contactRoute}>
-                  <box-icon name="phone" type="solid"></box-icon>
-                  <span>Contact</span>
-                </Link>
-              </li>
-              {token ? (
+          {menuIsDisplayed ? (
+            <NavMenu>
+              <CloseMenu onClick={handleToggleNavMenu}>
+                <p>hide</p>
+                <CloseIcon />
+              </CloseMenu>
+
+              <NavList linkID={currentLocation} scrollHeader={isScrollHeader}>
                 <li>
-                  <Link
-                    id="logout"
-                    to={routes.homeRoute}
-                    onClick={handleLogout}
-                  >
-                    <box-icon name="log-out" type="solid"></box-icon>
-                    <span>Logout</span>
+                  <Link id="home" to={routes.homeRoute}>
+                    <box-icon type="solid" name="home-alt-2"></box-icon>
+                    <span>Home</span>
                   </Link>
                 </li>
-              ) : (
                 <li>
-                  <Link id="login" to={routes.loginRoute}>
-                    <box-icon name="log-in" type="solid"></box-icon>
-                    <span>Login</span>
+                  <a href="#popular">
+                    <box-icon name="building-house" type="solid"></box-icon>
+                    <span>Residences</span>
+                  </a>
+                </li>
+                <li>
+                  <Link id="contact" to={routes.contactRoute}>
+                    <box-icon name="phone" type="solid"></box-icon>
+                    <span>Contact</span>
                   </Link>
                 </li>
-              )}
-            </NavList>
-          </NavMenu>
+                {token ? (
+                  <li>
+                    <Link
+                      id="logout"
+                      to={routes.homeRoute}
+                      onClick={handleLogout}
+                    >
+                      <box-icon name="log-out" type="solid"></box-icon>
+                      <span>Logout</span>
+                    </Link>
+                  </li>
+                ) : (
+                  <li>
+                    <Link id="login" to={routes.loginRoute}>
+                      <box-icon name="log-in" type="solid"></box-icon>
+                      <span>Login</span>
+                    </Link>
+                  </li>
+                )}
+              </NavList>
+            </NavMenu>
+          ) : (
+            <MenuIconHolder onClick={handleToggleNavMenu}>
+              <MenuIcon />{" "}
+            </MenuIconHolder>
+          )}
+
           {/* <box-icon type="regular" name="dots-vertical-rounded"></box-icon> */}
           <NavIcons>
             {token ? <box-icon type="regular" name="heart"></box-icon> : null}

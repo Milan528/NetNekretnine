@@ -94,6 +94,9 @@ export const NavbarLogo = styled.div`
 export const NavMenu = styled.div`
   width: initial;
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @media screen and (max-width: 1023px) {
     position: fixed;
@@ -104,7 +107,8 @@ export const NavMenu = styled.div`
     left: 0;
     right: 0;
     margin: 0 auto;
-    padding: 1.3rem 3rem;
+    // padding: 1rem 2rem;
+    padding: 0.5rem 2rem 1rem 2rem;
     border-radius: 1.25rem;
     transition: 0.4s;
   }
@@ -179,5 +183,37 @@ export const NavButton = styled.button`
 
   @media screen and (max-width: 1023px) {
     display: none;
+  }
+`;
+
+export const CloseMenu = styled.div`
+  display: none;
+  cursor: pointer;
+  @media screen and (max-width: 1023px) {
+    display: flex;
+    justify-content: end;
+  }
+`;
+
+export const MenuIconHolder = styled.div`
+  position: relative;
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  right: 1rem;
+  position: fixed;
+  bottom: 2rem;
+  background: var(--border-color);
+  > .MuiSvgIcon-root {
+    height: 100%;
+    width: 100%;
+    color: var(--first-color);
+  }
+
+  :hover {
+    border: 1px solid var(--first-color);
+    height: 35px;
+    width: 35px;
   }
 `;

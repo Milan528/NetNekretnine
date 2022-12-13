@@ -85,7 +85,6 @@ const ImageSlider = ({ slides }) => {
   return slides.length > 0 ? (
     <Container>
       <ImageContainer>
-        {console.log(activeSlide)}
         <Image image={slides[activeSlide]} />
       </ImageContainer>
       <ControlsContainer>

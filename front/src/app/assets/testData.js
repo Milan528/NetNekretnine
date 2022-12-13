@@ -9,15 +9,20 @@ const realestate1 = {
     "Kultivisan plac,zivu ogradu (lovorvisnja) klizna nova kapija zid ka ulici..itd kuca je 2020 delimicno renovirana. Cena 94999 eura. +38169715285",
   bedRooms: 1,
   bathRooms: 2,
-  area: 200,
+
   guests: 8,
+  area: 200,
   price: 2000,
   tip: "Apartman",
   location: "3 oktobar 10/10, Bor , Srbija",
   status: "Prodaja",
-  parkingMeso: 1,
+  parkingMeso: "Da",
   stanjeNekretnine: "Novogradnja",
-  opremljenost: "Iznad standarda",
+  // opremljenost: "Iznad standarda",
+  // ukupanBrojSoba: "",
+  uknizeno: "",
+  // spratnost: "",
+  // ukupanBrojSpratova: "",
   dodatneKarakteristike: [
     "Alarm",
     "Bazen",
@@ -53,11 +58,6 @@ const realestate1 = {
   video: {},
   createdAt: "16.4.2020",
   updatedAt: "28.5.2022",
-  ukupanBrojSoba: "",
-
-  uknizeno: "",
-  spratnost: "",
-  ukupanBrojSpratova: "",
 };
 
 export default realestate1;
